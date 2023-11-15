@@ -137,7 +137,7 @@ class Withdraw implements ATM {
 			FileWriter withdrawData=new FileWriter("Withdraw.txt", true);
 			DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime now=LocalDateTime.now();
-			withdrawData.write(String.format("%s %30s %25s %25s", dtf.format(now), bankBalance, amount, bankBalance-amount+"\n"));
+			withdrawData.write(String.format("%s %50s %30s %30s", dtf.format(now), bankBalance, amount, bankBalance-amount+"\n"));
 			bankBalance-=amount;
 			withdrawData.close();
 		}
@@ -157,7 +157,7 @@ class Transfer implements ATM {
 			FileWriter transferData=new FileWriter("Transfer.txt", true);
 			DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime now=LocalDateTime.now();
-			transferData.write(String.format("%s %30s %25s %25s %25s", dtf.format(now), bankBalance, amount, bankBalance-amount, accNo+"\n"));
+			transferData.write(String.format("%s %50s %30s %30s %30s", dtf.format(now), bankBalance, amount, bankBalance-amount, accNo+"\n"));
 			bankBalance-=amount;
 			transferData.close();
 		}
@@ -177,7 +177,7 @@ class Deposit implements ATM {
 			FileWriter depositData=new FileWriter("Deposit.txt", true);
 			DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime now=LocalDateTime.now();
-			depositData.write(String.format("%s %30s %25s %25s", dtf.format(now), bankBalance, amount, bankBalance+amount+"\n"));
+			depositData.write(String.format("%s %50s %30s %30s", dtf.format(now), bankBalance, amount, bankBalance+amount+"\n"));
 			bankBalance+=amount;
 			depositData.close();
 		}
@@ -295,7 +295,7 @@ class main {
 
 			try {
 				FileWriter createColumn=new FileWriter(moneyWithdraw, true);
-				createColumn.write(String.format("%s %20s %20s %20s", "Date and time", "Balance before", "Amount withdrawn", "Balance now\n"));
+				createColumn.write(String.format("%s %50s %30s %30s", "Date and time", "Balance before", "Amount withdrawn", "Balance now\n"));
 				createColumn.close();
 			}
 
@@ -321,7 +321,7 @@ class main {
 
 			try {
 				FileWriter createColumn=new FileWriter(moneyTransfer, true);
-				createColumn.write(String.format("%s %20s %20s %20s %20s", "Date and time", "Balance before", "Amount deposited", "Balance now", "Transferred to\n"));
+				createColumn.write(String.format("%s %50s %30s %30s %30s", "Date and time", "Balance before", "Amount deposited", "Balance now", "Transferred to\n"));
 				createColumn.close();
 			}
 
@@ -342,7 +342,7 @@ class main {
 
 				try {
 					FileWriter createColumn=new FileWriter(moneyDeposit, true);
-					createColumn.write(String.format("%s %20s %20s %20s", "Date and time", "Balance before", "Amount deposited", "Balance now\n"));
+					createColumn.write(String.format("%s %50s %30s %30s", "Date and time", "Balance before", "Amount deposited", "Balance now\n"));
 					createColumn.close();
 				}
 
