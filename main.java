@@ -1,4 +1,10 @@
-// ATM interface
+/*
+   					OASIS INFOBYTE INTERNSHIP ON JAVA DEVELOPMENT
+					Task: 3
+					Date: 14-Nov-2023
+					Author: Priyanuj Bora
+					Title: ATM Interface
+ */
 
 import java.util.*;      // for Scanner, Random, etc....
 import java.util.concurrent.TimeUnit;    // for sleep()
@@ -40,7 +46,7 @@ class History implements ATM {
 			else {
 				// display the withdraw history
 				String data=new String();
-				System.out.printf("%80s", "MONEY WITHDRAWAL HISTORY\n");
+				System.out.printf("%s", "\n\nMONEY WITHDRAWAL HISTORY\n");
 
 				try {
 					Scanner fileData=new Scanner(withdrawHist);
@@ -72,7 +78,7 @@ class History implements ATM {
 			else {
 				// display the money transfer history
 				String data=new String();
-				System.out.printf("%80s", "MONEY TRANSFER HISTORY\n");
+				System.out.printf("%s", "\n\nMONEY TRANSFER HISTORY\n");
 
 				try {
 					Scanner fileData=new Scanner(transferHist);
@@ -104,7 +110,7 @@ class History implements ATM {
 			else {
 				// display the deposit history
 				String data=new String();
-				System.out.printf("%80s", "MONEY DEPOSIT HISTORY\n");
+				System.out.printf("%s", "\n\nMONEY DEPOSIT HISTORY\n");
 				try {
 					Scanner fileData=new Scanner(depositHist);
 
@@ -137,7 +143,7 @@ class Withdraw implements ATM {
 			FileWriter withdrawData=new FileWriter("Withdraw.txt", true);
 			DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime now=LocalDateTime.now();
-			withdrawData.write(String.format("%s %30s %30s %30s", dtf.format(now), bankBalance, amount, bankBalance-amount+"\n"));
+			withdrawData.write(String.format("%s %19s %25s %40s", dtf.format(now), bankBalance, amount, bankBalance-amount+"\n"));
 			bankBalance-=amount;
 			withdrawData.close();
 		}
@@ -157,7 +163,7 @@ class Transfer implements ATM {
 			FileWriter transferData=new FileWriter("Transfer.txt", true);
 			DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime now=LocalDateTime.now();
-			transferData.write(String.format("%s %19s %25s %25s %25s", dtf.format(now), bankBalance, amount, bankBalance-amount, accNo+"\n"));
+			transferData.write(String.format("%s %19s %25s %40s %25s", dtf.format(now), bankBalance, amount, bankBalance-amount, accNo+"\n"));
 			bankBalance-=amount;
 			transferData.close();
 		}
@@ -177,7 +183,7 @@ class Deposit implements ATM {
 			FileWriter depositData=new FileWriter("Deposit.txt", true);
 			DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 			LocalDateTime now=LocalDateTime.now();
-			depositData.write(String.format("%s %19s %25s %25s", dtf.format(now), bankBalance, amount, bankBalance+amount+"\n"));
+			depositData.write(String.format("%s %19s %25s %40s", dtf.format(now), bankBalance, amount, bankBalance+amount+"\n"));
 			bankBalance+=amount;
 			depositData.close();
 		}
@@ -257,7 +263,7 @@ class main {
 
 	private static int menu() {
 		int option;
-		System.out.printf("%70s", "Please select your operation\n");
+		System.out.printf("%70s", "\n\nPlease select your operation\n");
 		System.out.printf("\n%s", "[1] History.");
 		System.out.printf("%120s", "[2] Withdraw.\n");
 		System.out.printf("\n%s", "[3] Transfer.");
@@ -321,7 +327,7 @@ class main {
 
 			try {
 				FileWriter createColumn=new FileWriter(moneyTransfer, true);
-				createColumn.write(String.format("%s %30s %30s %30s %30s", "Date and time", "Balance before", "Amount deposited", "Balance now", "Transferred to\n"));
+				createColumn.write(String.format("%s %30s %30s %30s %25s", "Date and time", "Balance before", "Amount deducted", "Balance now", "Transferred to\n"));
 				createColumn.close();
 			}
 
